@@ -40,16 +40,12 @@ describe('Record Store', function(){
     assert.deepEqual( [record1, record2, record3, record4], recordStore1.stock)
   })
 
+  it('Should update balance when record sold', function() {
+     recordStore1.sellRecord(record2);
+     assert.equal(108, recordStore1.balance)
+  })
+
   
-
-  // it('Should update balance when record sold', function() {
-  //    recordStore1.addRecord(record1);
-
-  //    recordStore1.soldRecord(record2);
-
-  //    recordStore1.addBalance(record1);
-  //    assert.equal(110, recordStore1.balance)
-  //  })
 
 
 
