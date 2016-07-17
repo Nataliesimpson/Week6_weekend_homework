@@ -9,9 +9,20 @@ var RecordStore = function( name, city, balance ){
 };
 
 RecordStore.prototype = {
-  addRecord: function(record) {
+  addRecord: function(record){
     this.stock.push(record);
-  }
+  },
+
+  listStock: function(record){
+    for(var record in this.records) {
+      return this.records;
+  }    
+},  
+
+  // addBalance: function (record) {
+  //   this.balance += record.price;
+  // },
+
 }  
 
 module.exports = RecordStore;
