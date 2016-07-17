@@ -1,5 +1,5 @@
 var _ = require('lodash');
-// var Record = require('./record');
+var Record = require('./record');
 
 var RecordStore = function( name, city, balance ){
   this.name = name;
@@ -13,17 +13,29 @@ RecordStore.prototype = {
     this.stock.push(record);
   },
 
-  listStock: function(record){
-    for(var record in this.records) {
-      return this.records;
-    }    
-  },  
+  addRecordBalance: function(record){
+    this.balance -= record.price;
+  },
 
   sellRecord: function(record){
-    this.stock.pop(record);
+    this.stock.pop(record); 
     this.balance += record.price;
   },
 
+  listStock: function(record){
+    for(var record in this.records) {
+    return this.records;
+    }   
+  },  
+
+  totalValue: function(){
+    var total = 0;
+    
+    this.stock.forEach(function(record){
+      total += record.price;
+    }) 
+    return total += this.balance;
+  }  
 
 }  
 

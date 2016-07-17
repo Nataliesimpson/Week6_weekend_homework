@@ -5,7 +5,12 @@ var RecordStore = require('../record_store.js');
 describe('Record Store', function(){
   beforeEach(function(){
     recordStore1 = new RecordStore('VoxBox', 'Edinburgh', 100);
-    recordStore2 = new RecordStore('Love Music', 'Glasgow', 0);
+    recordStore2 = new RecordStore('Love Music', 'Glasgow', 500);
+
+    record1 = new Record('Blur', 'Parklife', 10);
+    record2 = new Record('Arcade Fire', 'Funeral', 8);
+    record3 = new Record('Prodigy', 'The Fat of the Land', 5)
+    record4 = new Record('Artic Monkeys', 'AM', 12)
   })
 
   it('Should have a record store name', function(){
@@ -31,13 +36,18 @@ describe('Record Store', function(){
     assert.equal(3, recordStore2.stock.length)
   })
 
+  it('Should be able to sell records', function(){
+    recordStore2.addRecord(record1);
+    recordStore2.addRecord(record2);
+    recordStore2.sellRecord(record2);
+    assert.equal(1, recordStore2.stock.length)
+  })
+
   it('Should be able to list record stock', function(){
     recordStore1.addRecord(record1);
     recordStore1.addRecord(record2);
-    recordStore1.addRecord(record3);
-    recordStore1.addRecord(record4);
     recordStore1.listStock;
-    assert.deepEqual( [record1, record2, record3, record4], recordStore1.stock)
+    assert.deepEqual( [record1, record2], recordStore1.stock)
   })
 
   it('Should update balance when record sold', function() {
@@ -45,7 +55,18 @@ describe('Record Store', function(){
      assert.equal(108, recordStore1.balance)
   })
 
-  
+  it('Should update balance when record added to stock', function(){
+    recordStore2.addRecordBalance(record3);
+    assert.equal(495, recordStore2.balance)
+  })
+
+  it('Should give total balance and stock value', function(){
+    recordStore1.addRecord(record1);
+    recordStore1.addRecord(record2);
+    assert.equal(118, recordStore1.totalValue())
+  })
+
+
 
 
 
